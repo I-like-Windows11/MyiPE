@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIRPE镜像站 - 纯净PE系统下载</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* 顶部导航 */
+        header {
+            background: linear-gradient(135deg, var(--primary), #1a2530);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .admin-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        .admin-btn:hover {
+            background: #c0392b;
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            padding: 5rem 0;
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .btn-download {
+            background: var(--accent);
+            margin-left: 15px;
+        }
+        
+        .btn-download:hover {
+            background: #c0392b;
+        }
+        
+        /* PE介绍区域 */
+        .pe-intro {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            font-size: 2.2rem;
+        }
+        
+        .intro-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .intro-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .intro-text h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .intro-text p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .intro-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* 下载区域 - 简化为单个下载框 */
+        .download-section {
+            padding: 5rem 0;
+            background: #f1f8ff;
+        }
+        
+        .download-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .download-box h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .download-box p {
+            color: #666;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .pan-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .pan-card {
+            flex: 1;
+            min-width: 250px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s;
+        }
+        
+        .pan-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--secondary);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+        
+        .pan-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .pan-card h3 {
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            font-size: 1.5rem;
+        }
+        
+        .pan-card p {
+            color: #777;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .pan-btn {
+            display: block;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .pan-btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .pan-btn-123 {
+            background: #ff6b35;
+        }
+        
+        .pan-btn-123:hover {
+            background: #e55a2b;
+        }
+        
+        .pan-btn-huang {
+            background: #00a8ff;
+        }
+        
+        .pan-btn-huang:hover {
+            background: #0097e6;
+        }
+        
+        /* 文章区域 */
+        .articles-section {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .article-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .article-card:hover .article-image img {
+            transform: scale(1.05);
+        }
+        
+        .article-content {
+            padding: 1.5rem;
+        }
+        
+        .article-content h3 {
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+        
+        .article-content p {
+            color: #666;
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* 管理后台样式 */
+        .admin-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .admin-panel {
+            background: white;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+        
+        .admin-header {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-header h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .close-admin {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .close-admin:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .admin-content {
+            padding: 2rem;
+        }
+        
+        .admin-section {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .admin-section h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 2rem;
+        }
+        
+        .btn-save {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .btn-cancel {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .login-section {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .login-section h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .alert {
+            padding: 12px 15px;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .intro-content, .footer-content {
+                flex-direction: column;
+            }
+            
+            .btn {
+                display: block;
+                margin-bottom: 10px;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .btn-download {
+                margin-left: 0;
+            }
+            
+            .download-box {
+                padding: 2rem 1.5rem;
+            }
+            
+            .pan-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-compact-disc"></i>
+                <span>FIRPE镜像站</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#intro">PE介绍</a></li>
+                <li><a href="#download">下载</a></li>
+                <li><a href="#articles">教程</a></li>
+                <li><a href="#about">关于</a></li>
+            </ul>
+            <button class="admin-btn" id="openAdmin">
+                <i class="fas fa-cog"></i> 管理后台
+            </button>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>纯净、高效的Windows PE系统</h1>
+            <p>专为系统维护、数据恢复和故障排除设计的Windows预安装环境。轻量级、快速启动，集成最实用的硬件检测和系统工具。</p>
+            <div>
+                <a href="#intro" class="btn">了解更多</a>
+                <a href="#download" class="btn btn-download">立即下载</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PE介绍 -->
+    <section class="pe-intro" id="intro">
+        <div class="container">
+            <h2 class="section-title">FIRPE 系统介绍</h2>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>Windows PE 系统维护工具</h3>
+                    <p id="introText">FIRPE是一个基于Windows PE的轻量级系统维护环境，专为技术人员和普通用户设计。它提供了完整的系统维护工具集，可以在Windows无法启动时进行系统修复、数据备份、密码重置、硬盘分区等操作。</p>
+                    <p>FIRPE特点：纯净无广告、快速启动、支持UEFI/Legacy双启动、集成最新硬件驱动、包含常用维护工具，是您系统维护的得力助手。</p>
+                    <a href="#download" class="btn">下载FIRPE</a>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1629654291660-3c98113a0438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="PE系统界面">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载区域 -->
+    <section class="download-section" id="download">
+        <div class="container">
+            <h2 class="section-title">下载FIRPE系统</h2>
+            <div class="download-box">
+                <h2>FIRPE 最新版本</h2>
+                <p>当前版本：v2.0.3 | 大小：650MB | 更新日期：2023年10月</p>
+                <p>FIRPE是一个纯净无广告的Windows PE维护系统，集成常用系统工具，支持UEFI/Legacy双启动模式。</p>
+                
+                <div class="pan-links">
+                    <!-- 123云盘 -->
+                    <div class="pan-card">
+                        <div class="pan-icon">
+                            <i class="fas fa-cloud-download-alt"></i>
+                        </div>
+                        <h3>123云盘</h3>
+                        <p>高速下载，稳定可靠</p>
+                        <a href="#" class="pan-btn pan-btn-123" id="pan123Link">前往123云盘下载</a>
+                    </div>
+                    
+                    <!-- huang1111网盘 -->
+                    <div class="pan-card">
+                        <div class="pan-icon">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <h3>huang1111网盘</h3>
+                        <p>备用下载，长期有效</p>
+                        <a href="#" class="pan-btn pan-btn-huang" id="huang1111Link">前往huang1111网盘下载</a>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px dashed #ddd;">
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">使用说明</h4>
+                    <p style="color: #666; font-size: 0.95rem;">下载后请使用Rufus、Ventoy或UltraISO等工具将ISO镜像写入U盘，然后从U盘启动即可进入FIRPE系统。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 教程区域 -->
+    <section class="articles-section" id="articles">
+        <div class="container">
+            <h2 class="section-title">使用教程</h2>
+            <div class="articles-grid">
+                <!-- 文章1 -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="制作PE启动盘">
+                    </div>
+                    <div class="article-content">
+                        <h3>FIRPE启动U盘制作教程</h3>
+                        <p>详细图文教程，教你如何使用Rufus、Ventoy等工具将FIRPE写入U盘，制作可启动的系统维护盘。</p>
+                        <a href="#" class="btn" id="articleLink1">查看教程</a>
+                    </div>
+                </div>
+                
+                <!-- 文章2 -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="系统恢复">
+                    </div>
+                    <div class="article-content">
+                        <h3>使用FIRPE恢复系统与数据</h3>
+                        <p>当Windows无法启动时，如何使用FIRPE进入系统并恢复重要文件、修复启动问题。</p>
+                        <a href="#" class="btn" id="articleLink2">查看教程</a>
+                    </div>
+                </div>
+                
+                <!-- 文章3 -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="系统安装">
+                    </div>
+                    <div class="article-content">
+                        <h3>使用FIRPE安装Windows系统</h3>
+                        <p>无需光驱，使用FIRPE启动盘快速安装Windows 10/11系统，支持GPT和MBR分区格式。</p>
+                        <a href="#" class="btn" id="articleLink3">查看教程</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="about">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>FIRPE镜像站</h3>
+                    <p>提供纯净、高效的Windows PE系统镜像下载及相关技术支持。我们的目标是让系统维护变得更简单。</p>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#intro">PE介绍</a></li>
+                        <li><a href="#download">下载</a></li>
+                        <li><a href="#articles">教程</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>关于我们</h3>
+                    <p>本站致力于提供纯净、无广告的系统维护工具，所有资源免费共享，遵循开源精神。</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 FIRPE镜像站. 本网站内容仅供参考，使用软件请遵守相关法律法规.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 管理后台 -->
+    <div class="admin-overlay" id="adminOverlay">
+        <div class="admin-panel">
+            <div class="admin-header">
+                <h2><i class="fas fa-cogs"></i> 网站管理后台</h2>
+                <button class="close-admin" id="closeAdmin">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- 登录界面 -->
+            <div class="admin-content" id="loginSection">
+                <div class="login-section">
+                    <h3>管理员登录</h3>
+                    <div class="alert alert-error" id="loginError">密码错误，请重试！</div>
+                    <div class="form-group">
+                        <label for="adminPassword">管理密码</label>
+                        <input type="password" id="adminPassword" placeholder="请输入管理密码">
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-cancel" id="cancelLogin">取消</button>
+                        <button class="btn btn-save" id="loginBtn">登录</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 管理界面 -->
+            <div class="admin-content" id="adminSection" style="display: none;">
+                <div class="alert alert-success" id="saveSuccess">设置保存成功！</div>
+                
+                <!-- 下载链接管理 -->
+                <div class="admin-section">
+                    <h3><i class="fas fa-download"></i> 下载链接管理</h3>
+                    
+                    <div class="form-group">
+                        <label for="pan123Url">123云盘下载链接</label>
+                        <input type="text" id="pan123Url" placeholder="输入123云盘下载链接">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="huang1111Url">huang1111网盘下载链接</label>
+                        <input type="text" id="huang1111Url" placeholder="输入huang1111网盘下载链接">
+                    </div>
+                </div>
+                
+                <!-- 文章链接管理 -->
+                <div class="admin-section">
+                    <h3><i class="fas fa-newspaper"></i> 文章链接管理</h3>
+                    
+                    <div class="form-group">
+                        <label for="articleLink1">文章1链接 (启动U盘制作教程)</label>
+                        <input type="text" id="articleLink1Input" placeholder="输入文章1的链接地址">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="articleLink2">文章2链接 (系统与数据恢复教程)</label>
+                        <input type="text" id="articleLink2Input" placeholder="输入文章2的链接地址">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="articleLink3">文章3链接 (安装Windows系统教程)</label>
+                        <input type="text" id="articleLink3Input" placeholder="输入文章3的链接地址">
+                    </div>
+                </div>
+                
+                <!-- 内容管理 -->
+                <div class="admin-section">
+                    <h3><i class="fas fa-edit"></i> 内容管理</h3>
+                    
+                    <div class="form-group">
+                        <label for="introText">PE介绍文本</label>
+                        <textarea id="introTextInput" placeholder="输入PE介绍文本内容"></textarea>
+                    </div>
+                </div>
+                
+                <!-- 密码管理 -->
+                <div class="admin-section">
+                    <h3><i class="fas fa-key"></i> 密码管理</h3>
+                    
+                    <div class="form-group">
+                        <label for="newPassword">新管理密码</label>
+                        <input type="password" id="newPassword" placeholder="输入新管理密码">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">确认新密码</label>
+                        <input type="password" id="confirmPassword" placeholder="再次输入新密码">
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-cancel" id="cancelAdmin">取消</button>
+                    <button class="btn btn-save" id="saveSettings">保存所有设置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 默认数据
+        const defaultData = {
+            // 下载链接
+            pan123Url: "https://www.123pan.com/s/abcd-12345",
+            huang1111Url: "https://pan.huang1111.cn/s/xyz-789",
+            
+            // 文章链接
+            articleLink1: "https://example.com/tutorials/create-bootable-usb",
+            articleLink2: "https://example.com/tutorials/system-recovery",
+            articleLink3: "https://example.com/tutorials/install-windows",
+            
+            // 内容
+            introText: "FIRPE是一个基于Windows PE的轻量级系统维护环境，专为技术人员和普通用户设计。它提供了完整的系统维护工具集，可以在Windows无法启动时进行系统修复、数据备份、密码重置、硬盘分区等操作。",
+            
+            // 管理密码
+            adminPassword: "admin123"
+        };
+
+        // 初始化数据
+        function initData() {
+            if (!localStorage.getItem('firpeData')) {
+                localStorage.setItem('firpeData', JSON.stringify(defaultData));
+            }
+            
+            // 更新页面内容
+            updatePageContent();
+        }
+        
+        // 更新页面内容
+        function updatePageContent() {
+            const data = JSON.parse(localStorage.getItem('firpeData'));
+            
+            // 更新下载链接
+            document.getElementById('pan123Link').href = data.pan123Url;
+            document.getElementById('huang1111Link').href = data.huang1111Url;
+            
+            // 更新介绍文本
+            document.getElementById('introText').textContent = data.introText;
+            
+            // 更新文章链接
+            document.getElementById('articleLink1').href = data.articleLink1;
+            document.getElementById('articleLink2').href = data.articleLink2;
+            document.getElementById('articleLink3').href = data.articleLink3;
+            
+            // 更新管理面板中的表单值
+            if (document.getElementById('pan123Url')) {
+                document.getElementById('pan123Url').value = data.pan123Url;
+                document.getElementById('huang1111Url').value = data.huang1111Url;
+                
+                document.getElementById('articleLink1Input').value = data.articleLink1;
+                document.getElementById('articleLink2Input').value = data.articleLink2;
+                document.getElementById('articleLink3Input').value = data.articleLink3;
+                
+                document.getElementById('introTextInput').value = data.introText;
+            }
+        }
+        
+        // 管理后台相关功能
+        document.getElementById('openAdmin').addEventListener('click', function() {
+            document.getElementById('adminOverlay').style.display = 'flex';
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('adminSection').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('loginError').style.display = 'none';
+        });
+        
+        document.getElementById('closeAdmin').addEventListener('click', function() {
+            document.getElementById('adminOverlay').style.display = 'none';
+        });
+        
+        document.getElementById('cancelLogin').addEventListener('click', function() {
+            document.getElementById('adminOverlay').style.display = 'none';
+        });
+        
+        document.getElementById('cancelAdmin').addEventListener('click', function() {
+            document.getElementById('adminOverlay').style.display = 'none';
+        });
+        
+        // 登录功能
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            const password = document.getElementById('adminPassword').value;
+            const data = JSON.parse(localStorage.getItem('firpeData'));
+            
+            if (password === data.adminPassword) {
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('adminSection').style.display = 'block';
+                document.getElementById('saveSuccess').style.display = 'none';
+                
+                // 更新管理面板中的表单值
+                updatePageContent();
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        });
+        
+        // 保存设置
+        document.getElementById('saveSettings').addEventListener('click', function() {
+            const data = JSON.parse(localStorage.getItem('firpeData'));
+            
+            // 更新下载链接
+            data.pan123Url = document.getElementById('pan123Url').value;
+            data.huang1111Url = document.getElementById('huang1111Url').value;
+            
+            // 更新文章链接
+            data.articleLink1 = document.getElementById('articleLink1Input').value;
+            data.articleLink2 = document.getElementById('articleLink2Input').value;
+            data.articleLink3 = document.getElementById('articleLink3Input').value;
+            
+            // 更新内容
+            data.introText = document.getElementById('introTextInput').value;
+            
+            // 更新密码
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (newPassword && newPassword === confirmPassword) {
+                data.adminPassword = newPassword;
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmPassword').value = '';
+            }
+            
+            // 保存到localStorage
+            localStorage.setItem('firpeData', JSON.stringify(data));
+            
+            // 更新页面内容
+            updatePageContent();
+            
+            // 显示成功消息
+            const successAlert = document.getElementById('saveSuccess');
+            successAlert.style.display = 'block';
+            successAlert.textContent = '设置保存成功！页面已更新。';
+            
+            // 3秒后隐藏消息
+            setTimeout(() => {
+                successAlert.style.display = 'none';
+            }, 3000);
+        });
+        
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            initData();
+            
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href === "#") return;
+                    
+                    e.preventDefault();
+                    
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+        
+        // 导出数据功能（用于备份）
+        function exportData() {
+            const data = JSON.parse(localStorage.getItem('firpeData'));
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = 'firpe-data-backup.json';
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        }
+        
+        // 导入数据功能（用于恢复）
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    try {
+                        const importedData = JSON.parse(e.target.result);
+                        localStorage.setItem('firpeData', JSON.stringify(importedData));
+                        updatePageContent();
+                        alert('数据导入成功！页面已更新。');
+                    } catch (err) {
+                        alert('导入失败，文件格式不正确！');
+                    }
+                };
+                
+                reader.readAsText(file);
+            };
+            
+            input.click();
+        }
+        
+        // 添加导出/导入按钮到管理面板（可选功能）
+        function addDataManagementButtons() {
+            const adminActions = document.querySelector('.form-actions');
+            
+            if (adminActions && !document.getElementById('exportBtn')) {
+                const exportBtn = document.createElement('button');
+                exportBtn.id = 'exportBtn';
+                exportBtn.className = 'btn';
+                exportBtn.innerHTML = '<i class="fas fa-file-export"></i> 导出数据';
+                exportBtn.style.backgroundColor = '#27ae60';
+                exportBtn.style.marginRight = '10px';
+                exportBtn.onclick = exportData;
+                
+                const importBtn = document.createElement('button');
+                importBtn.id = 'importBtn';
+                importBtn.className = 'btn';
+                importBtn.innerHTML = '<i class="fas fa-file-import"></i> 导入数据';
+                importBtn.style.backgroundColor = '#f39c12';
+                importBtn.onclick = importData;
+                
+                adminActions.insertBefore(importBtn, adminActions.firstChild);
+                adminActions.insertBefore(exportBtn, adminActions.firstChild);
+            }
+        }
+        
+        // 当管理面板打开时添加数据管理按钮
+        document.getElementById('openAdmin').addEventListener('click', function() {
+            setTimeout(addDataManagementButtons, 100);
+        });
+    </script>
+</body>
+</html>
